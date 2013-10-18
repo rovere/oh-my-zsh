@@ -17,6 +17,7 @@ alias b050="ssh -t -Y lxbuild050.cern.ch"
 alias vocms116="ssh -t -Y vocms116.cern.ch" 
 alias vocms138="ssh -t -Y vocms138.cern.ch" 
 alias vocms139="ssh -t -Y vocms139.cern.ch" 
+alias vocms139="ssh -t -Y vocms139.cern.ch" 
 
 alias work='cd /afs/cern.ch/work/r/rovere'
 alias slc5='export SCRAM_ARCH=slc5_ia32_gcc434'
