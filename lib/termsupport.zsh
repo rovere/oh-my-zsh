@@ -32,5 +32,5 @@ function omz_termsupport_preexec {
 }
 
 autoload -U add-zsh-hook
-add-zsh-hook precmd  omz_termsupport_precmd
-add-zsh-hook preexec omz_termsupport_preexec
+#add-zsh-hook precmd  omz_termsupport_precmd
+#add-zsh-hook preexec omz_termsupport_preexec
