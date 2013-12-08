@@ -10,8 +10,9 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg_bold[red]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
+PROMPT='%{$fg[green]%}%n@%m %~%{$fg_bold[red]%}[%j]<%*>%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
 PROMPT='
-%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
+%{$fg_bold[green]%}%n@%m %~%{$fg_bold[red]%}[%j]%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 $ '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⤣ "
