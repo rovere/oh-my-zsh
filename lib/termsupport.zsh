@@ -102,35 +102,6 @@ function omz_termsupport_preexec {
   title "$CMD" "%100>...>${LINE}%<<"
 }
 
-autoload -Uz add-zsh-hook
-
-if [[ -z "$INSIDE_EMACS" || "$INSIDE_EMACS" = vterm ]]; then
-  add-zsh-hook precmd omz_termsupport_precmd
-  add-zsh-hook preexec omz_termsupport_preexec
-fi
-
-# Keep Apple Terminal.app's current working directory updated
-# Based on this answer: https://superuser.com/a/315029
-# With extra fixes to handle multibyte chars and non-UTF-8 locales
-
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]] && [[ -z "$INSIDE_EMACS" ]]; then
-  # Emits the control sequence to notify Terminal.app of the cwd
-  # Identifies the directory using a file: URI scheme, including
-  # the host name to disambiguate local vs. remote paths.
-  function update_terminalapp_cwd() {
-    emulate -L zsh
-
-    # Percent-encode the host and path names.
-    local URL_HOST URL_PATH
-    URL_HOST="$(omz_urlencode -P $HOST)" || return 1
-    URL_PATH="$(omz_urlencode -P $PWD)" || return 1
-
-    # Undocumented Terminal.app-specific control sequence
-    printf '\e]7;%s\a' "file://$URL_HOST$URL_PATH"
-  }
-
-  # Use a precmd hook instead of a chpwd hook to avoid contaminating output
-  add-zsh-hook precmd update_terminalapp_cwd
-  # Run once to get initial cwd set
-  update_terminalapp_cwd
-fi
+autoload -U add-zsh-hook
+#add-zsh-hook precmd  omz_termsupport_precmd
+#add-zsh-hook preexec omz_termsupport_preexec
