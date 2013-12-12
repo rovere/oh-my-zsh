@@ -10,7 +10,7 @@ rbenv_version() {
 
 PROMPT='%{$fg[green]%}%n@%m %~%{$fg_bold[red]%}[%j]<%*>%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
 PROMPT='
-%{$fg_bold[green]%}%n@%m %~%{$fg_bold[red]%}[%j]%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
+%{$fg_bold[green]%}%n@%m %~%{$fg_bold[red]%}[$?]%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 $ '
 
 # Must use Powerline font, for \uE0A0 to render.
