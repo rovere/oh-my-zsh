@@ -21,3 +21,12 @@ alias vocms132="ssh -t -Y vocms132.cern.ch"
 alias vocms127="ssh -t -Y vocms127.cern.ch" 
 alias vocms139="ssh -t -Y vocms139.cern.ch" 
 
+alias work='cd /afs/cern.ch/work/r/rovere'
+alias slc5='export SCRAM_ARCH=slc5_ia32_gcc434'
+alias cmst3='export STAGE_HOST=castorcms && export STAGE_SVCCLASS=cmst3'
+alias nocmst3='export STAGE_HOST=castorpublic && export STAGE_SVCCLASS=default'
+alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh'
+
+alias t='/usr/bin/time -f "%E"'
+
+hless () {highlight -A $* | less -n -r}
