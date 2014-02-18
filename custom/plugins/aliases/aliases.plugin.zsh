@@ -30,3 +30,4 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
  
 alias t='/usr/bin/time -f "%E"'
 
+hless () {highlight -A $* | less -n -r}
