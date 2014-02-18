@@ -29,3 +29,5 @@ alias nocmst3='export STAGE_HOST=castorpublic && export STAGE_SVCCLASS=default'
 alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh'
  
 alias t='/usr/bin/time -f "%E"'
+
+hless () {highlight -A $* | less -n -r}
