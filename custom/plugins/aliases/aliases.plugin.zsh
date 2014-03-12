@@ -32,5 +32,5 @@ alias t='/usr/bin/time -f "%E"'
 hless () {highlight -A $* | less -n -r}
 eosrmdir () {
   eosrepo=$*
-   for f in $(eoscms ls ${eosrepo}); do echo -n "Removing ${eosrepo}$f" && eoscms rm ${eosrepo}$f; done
+   for f in $(eoscms ls ${eosrepo}); do echo -n "Removing ${eosrepo}$f\n" && eoscms rm ${eosrepo}$f; done
 }
