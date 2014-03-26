@@ -35,3 +35,7 @@ eosrmdir () {
   eosrepo=$*
    for f in $(eoscms ls ${eosrepo}); do echo -n "Removing ${eosrepo}$f\n" && eoscms rm ${eosrepo}$f; done
 }
+
+checkfiles () {
+compare_using_files.py -C -s b2b -t 0.999999 $*
+}
