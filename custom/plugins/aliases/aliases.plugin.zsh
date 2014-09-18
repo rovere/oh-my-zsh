@@ -38,3 +38,9 @@ eosrmdir () {
 checkfiles () {
 compare_using_files.py -C -s b2b -t 0.999999 $*
 }
+
+if [ -d /home/rovere/local/bin ]; then
+  export PATH=/home/rovere/local/bin:$PATH
+  export LD_LIBRARY_PATH=/home/rovere/local/lib:$LD_LIBRARY_PATH
+  export MANPATH=/home/rovere/local/share/man:$MANPATH
+fi
