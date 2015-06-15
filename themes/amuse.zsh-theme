@@ -2,6 +2,16 @@
 
 # Must use Powerline font, for \uE0A0 to render.
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}\uE0A0 "
+RPROMPT='%{$fg_bold[red]%}$(rbenv_version)%{$reset_color%}'
+
+case `hostname -s` in
+ 'vocms138' | 'vocms0138' | 'vocms139' | 'vocms0139')
+   PROMPT='%{$bg[red]%}%{$fg[white]%}%n@%m %{$fg[white]%} %~%{$fg_bold[white]%}[$? ${(Mw)#jobstates#running:}/${(Mw)#jobstates#suspended:}]%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}%{$bg[red]%}%{$fg[white]%}
+ $ '
+   RPROMPT='';;
+esac
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⤣ "
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ✘"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
