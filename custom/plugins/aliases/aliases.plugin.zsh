@@ -29,7 +29,7 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
 
 alias t='/usr/bin/time -f "%E"'
 
-alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && release_notes.py)'
+alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && release_notes.sh)'
 hless () {highlight -A $* | less -n -r}
 eosrmdir () {
   eosrepo=$*
