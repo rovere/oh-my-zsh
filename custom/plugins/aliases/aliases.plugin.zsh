@@ -40,6 +40,9 @@ checkfiles () {
 compare_using_files.py -C -s b2b -t 0.999999 $*
 }
 
+# Tmux default layout at CERN
+alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
+
 if [ -d /home/rovere/local/bin ]; then
   export PATH=/home/rovere/local/bin:$PATH
   export LD_LIBRARY_PATH=/home/rovere/local/lib:$LD_LIBRARY_PATH
