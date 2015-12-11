@@ -3,3 +3,4 @@ VI=$(which vim)
 if [ $? -eq 0 ]; then
   export VISUAL=${VI}
 fi
+export PATH=~/.local/bin/:${PATH}
