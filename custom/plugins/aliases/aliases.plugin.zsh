@@ -11,7 +11,6 @@ alias proxyCern="ssh -t -D 1934 rovere@lxplus.cern.ch"
 alias proxyP5="ssh -t -L 1934:localhost:1080 rovere@lxplus.cern.ch ssh -t -D 1080 rovere@cmsusr1"
 alias proxyCernP5="ssh -D 1934 rovere@cmsusr1"
 
-alias b150="ssh -t -Y lxbuild150.cern.ch"
 alias b046="ssh -t -Y lxbuild046.cern.ch"
 alias b050="ssh -t -Y lxbuild050.cern.ch"
 alias vocms116="ssh -t -Y vocms116.cern.ch"
@@ -30,6 +29,7 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
 
 alias t='/usr/bin/time -f "%E"'
 
+alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && release_notes.sh)'
 hless () {highlight -A $* | less -n -r}
 eosrmdir () {
   eosrepo=$*
@@ -39,6 +39,9 @@ eosrmdir () {
 checkfiles () {
 compare_using_files.py -C -s b2b -t 0.999999 $*
 }
+
+# Tmux default layout at CERN
+alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
 
 if [ -d /home/rovere/local/bin ]; then
   export PATH=/home/rovere/local/bin:$PATH

@@ -16,6 +16,9 @@ if "$ZSH/tools/require_tool.sh" emacs 23 2>/dev/null ; then
     # set EDITOR if not already defined.
     export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
 
+    # set VISUAL if not already defined.
+    export VISUAL="${VISUAL:-${EMACS_PLUGIN_LAUNCHER}}"
+
     alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
     alias e=emacs
 
