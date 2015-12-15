@@ -359,6 +359,15 @@ prompt_terraform() {
   prompt_segment magenta yellow "TF: $terraform_info"
 }
 
+# Running/suspended jobs
+prompt_jobs() {
+ local r
+ local s
+ r=$(jobs -l | grep running | wc -l | tr -d ' ')
+ s=$(jobs -l | grep suspended | wc -l | tr -d ' ')
+ prompt_segment yellow black '['$r/$s']'
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
