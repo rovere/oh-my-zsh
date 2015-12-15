@@ -164,10 +164,20 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+# Running/suspended jobs
+prompt_jobs() {
+ local r
+ local s
+ r=$(jobs -l | grep running | wc -l | tr -d ' ')
+ s=$(jobs -l | grep suspended | wc -l | tr -d ' ')
+ prompt_segment yellow black '['$r/$s']'
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_status
+  prompt_jobs
   prompt_virtualenv
   prompt_context
   prompt_dir
