@@ -363,6 +363,7 @@ prompt_terraform() {
 build_prompt() {
   RETVAL=$?
   prompt_status
+  prompt_jobs
   prompt_virtualenv
   prompt_aws
   prompt_terraform
