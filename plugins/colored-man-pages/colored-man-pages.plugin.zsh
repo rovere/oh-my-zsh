@@ -1,6 +1,6 @@
-if [ "$OSTYPE" = solaris* ]
+if [[ "$OSTYPE" = solaris* ]]
 then
-	if [ ! -x "$HOME/bin/nroff" ]
+	if [[ ! -x "$HOME/bin/nroff" ]]
 	then
 		mkdir -p "$HOME/bin"
 		cat > "$HOME/bin/nroff" <<EOF
@@ -25,7 +25,7 @@ man() {
 		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
 		LESS_TERMCAP_ue=$(printf "\e[0m") \
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-		PAGER=/usr/bin/less \
+		PAGER="${commands[less]:-$PAGER}" \
 		_NROFF_U=1 \
 		PATH="$HOME/bin:$PATH" \
 			man "$@"
