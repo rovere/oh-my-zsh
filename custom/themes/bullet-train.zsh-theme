@@ -311,8 +311,11 @@ prompt_custom() {
     BULLETTRAIN_CUSTOM_MSG="Production"
     ;;
   *)
+    BULLETTRAIN_CUSTOM_MSG=""
     ;;
   esac
+
+  [[ ${BULLETTRAIN_CUSTOM_MSG} == "" ]] && return
   prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
 }
 
