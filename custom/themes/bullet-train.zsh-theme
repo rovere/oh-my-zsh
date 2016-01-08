@@ -59,13 +59,13 @@ fi
 
 # CUSTOM
 if [ ! -n "${BULLETTRAIN_CUSTOM_MSG+1}" ]; then
-  BULLETTRAIN_CUSTOM_MSG=false
+  BULLETTRAIN_CUSTOM_MSG=true
 fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_BG+1}" ]; then
-  BULLETTRAIN_CUSTOM_BG=black
+  BULLETTRAIN_CUSTOM_BG=red
 fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
-  BULLETTRAIN_CUSTOM_FG=default
+  BULLETTRAIN_CUSTOM_FG=black
 fi
 
 # VIRTUALENV
@@ -303,6 +303,16 @@ prompt_custom() {
     return
   fi
 
+  case $(hostname -s) in
+  vocms013[89])
+    BULLETTRAIN_CUSTOM_MSG="Production"
+    ;;
+  vocms022)
+    BULLETTRAIN_CUSTOM_MSG="Production"
+    ;;
+  *)
+    ;;
+  esac
   prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
 }
 
