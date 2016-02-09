@@ -1,6 +1,6 @@
 export MAGICK_HOME="/usr/local/ImageMagick"
 export PATH="$MAGICK_HOME/bin:$PATH"
-export PATH="/usr/local/texlive/2014/bin/x86_64-darwin/:/usr/local/texlive/2012/bin/x86_64-darwin/:/usr/local/texlive/2010/bin/x86_64-darwin/:$PATH"
+export PATH="/usr/local/texlive/2015/bin/x86_64-darwin:$PATH"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 
 export ROOTSYS="/usr/local/root/"
