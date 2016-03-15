@@ -7,6 +7,7 @@ export ROOTSYS="/usr/local/root/"
 export PYTHONPATH="$ROOTSYS/lib"
 export PATH="$ROOTSYS/bin:$PATH"
 export PATH="~$USER/bin:$PATH"
+export PATH=/usr/local/MacGPG2/bin:${PATH}
 export DYLD_LIBRARY_PATH="$ROOTSYS/lib"
 
 export TEXINPUTS="./:$HOME/Documents/Presentazioni:$HOME/CERN-tex/texmf-local/tex/{latex,generic,}//:"
