@@ -3,7 +3,7 @@ export PATH="$MAGICK_HOME/bin:$PATH"
 export PATH="/usr/texbin:/usr/local/texlive/2015/bin/x86_64-darwin:$PATH"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 
-export ROOTSYS="/usr/local/root/"
+export ROOTSYS="/Users/rovere/root"
 export PYTHONPATH="$ROOTSYS/lib"
 export PATH="$ROOTSYS/bin:$PATH"
 export PATH="~$USER/bin:$PATH"
