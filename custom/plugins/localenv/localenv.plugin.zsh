@@ -8,6 +8,9 @@ export PATH=~/.local/bin/:${PATH}
 #This is for using stgit
 export PATH=~/bin/stgit:${PATH}
 
+# This is needed to use locally compiled git on CERN VMs
+export PATH=/usr/local/bin:${PATH}
+
 # Use custom-compiled emacs on afs
 export PATH=/afs/cern.ch/work/r/rovere/emacs/bin:${PATH}
 
