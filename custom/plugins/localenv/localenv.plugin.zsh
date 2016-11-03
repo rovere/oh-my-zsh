@@ -51,6 +51,9 @@ function loadgpg() {
 function killgpg() {
     if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
        kill -s TERM $(pgrep -u ${USER} gpg-agent)
+       if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
+         rm "$HOME/.gpg-agent-info_${HOSTNAME}"
+       fi
     fi
     unset GPG_AGENT_INFO
     unset SSH_AUTH_SOCK
