@@ -36,6 +36,18 @@ eosrmdir () {
    for f in $(eoscms ls ${eosrepo}); do echo -n "Removing ${eosrepo}$f\n" && eoscms rm ${eosrepo}$f; done
 }
 
+# directly search for files under the CMSSW_RELASE_BASE, if set.
+rless () {
+# See here: http://stackoverflow.com/questions/307503/whats-a-concise-way-to-check-that-environment-variables-are-set-in-unix-shellsc
+: ${CMSSW_RELEASE_BASE:?"Source CMSSW environment first"}
+ less ${CMSSW_RELEASE_BASE}/src/$*
+}
+
+rlt() {
+: ${CMSSW_RELEASE_BASE:?"Source CMSSW environment first"}
+ ls -latr ${CMSSW_RELEASE_BASE}/src/$*
+}
+
 checkfiles () {
 compare_using_files.py -C -s b2b -t 0.999999 $*
 }
