@@ -72,6 +72,6 @@ reloadgpg () {
 # Activate gpg only on vinavx2, not on any generic machine.
 # The functions are anyway available to activate it on-demand
 machine=$(hostname -s)
-if [ ${machine} = "vinavx2" ]; then
+if [[ ${machine} == "vinavx2" ]]; then
   loadgpg
 fi
