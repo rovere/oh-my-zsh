@@ -399,7 +399,8 @@ prompt_dir() {
     dir="${dir}%0~"
   else
     #medium directories (default case)
-    dir="${dir}%4(c:...:)%3c"
+    dir="${dir}%20<...<%~%<<"
+#    dir="${dir}%2(c:...:)%3c"
   fi
 
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
