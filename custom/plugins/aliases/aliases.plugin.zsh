@@ -24,3 +24,9 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
 alias t='/usr/bin/time -f "%E"'
 
 hless () {highlight -A $* | less -n -r}
+
+createTags() {
+  find -E ./  -regex '.*\.(h|cc|icc|cpp)$' > source_files.txt
+  cscope -b -i source_files.txt
+  ctags --extra=+fq -L source_files.txt --verbose
+}
