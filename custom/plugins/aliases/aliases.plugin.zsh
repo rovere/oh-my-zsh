@@ -52,6 +52,13 @@ checkfiles () {
 compare_using_files.py -C -s b2b -t 0.999999 $*
 }
 
+createTags() {
+  find -regextype posix-egrep ./  -regex '.*\.(h|cc|icc|cpp)$' > source_files.txt
+  cscope -b -i source_files.txt
+  /usr/bin/ctags --extra=+fq -L source_files.txt
+}
+
+
 # Tmux default layout at CERN
 alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
 
