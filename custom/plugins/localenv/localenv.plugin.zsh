@@ -4,6 +4,7 @@ if [ $? -eq 0 ]; then
   export VISUAL=${VI}
 fi
 export PATH=~/.local/bin/:${PATH}
+export PATH=~/tools/:${PATH}
 
 #This is for using stgit
 export PATH=~/bin/stgit:${PATH}
