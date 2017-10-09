@@ -304,11 +304,14 @@ prompt_custom() {
   fi
 
   case $(hostname -s) in
-  vocms013[89])
+  vocms0[17]3[89])
     BULLETTRAIN_CUSTOM_MSG="Production"
     ;;
   vocms022)
-    BULLETTRAIN_CUSTOM_MSG="Production"
+    BULLETTRAIN_CUSTOM_MSG="BuildingC6"
+    ;;
+  vocms055)
+    BULLETTRAIN_CUSTOM_MSG="BuildingC7"
     ;;
   *)
     BULLETTRAIN_CUSTOM_MSG=""
