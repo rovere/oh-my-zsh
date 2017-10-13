@@ -19,6 +19,7 @@ alias vocms0739="ssh -t -XY vocms0739.cern.ch"
 alias v2="ssh -t -XY vinavx2.cern.ch"
 alias o9="ssh -t -XY olsnbc09.cern.ch"
 alias m7="ssh -t -XY mrovere-slc7.cern.ch"
+alias d7="ssh -t -XY dqmgui7.cern.ch"
 
 alias work='cd /afs/cern.ch/work/r/rovere'
 alias slc5='export SCRAM_ARCH=slc5_ia32_gcc434'
