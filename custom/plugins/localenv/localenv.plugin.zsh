@@ -26,6 +26,39 @@ export LS_COLORS="no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd
 
 # First test if gpg-agent is already running
 
+function checkgpg() {
+  if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
+    echo "GPG-AGENT Running with PID: $(pgrep -u ${USER} gpg-agent)"
+    if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
+            if [ -n "${GPG_AGENT_INFO+1}" ]; then
+              echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
+              if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
+              else
+                echo "GPG Agent is running most likely in another shell" 
+                return 1
+              fi
+            else
+              echo "GPG Agent is running most likely in another shell"
+              return 1
+            fi
+            if [ -n "${SSH_AUTH_SOCK+1}" ]; then
+              echo "SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}"
+            else
+              echo "GPG Agent is running most likely in another shell"
+              return 1
+            fi
+            echo "GPG_TTY: ${GPG_TTY}"
+    else
+	    echo "GPG Agent is running but has no active configuration"
+            return 1
+    fi
+  else
+            echo "GPG Agent is not running"
+            return 1
+  fi
+  return 0
+}
+
 function loadgpg() {
   if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
