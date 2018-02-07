@@ -41,6 +41,12 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
 alias t='/usr/bin/time -f "%E"'
 
 alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && release_notes.sh)'
+
+# CMSSW
+alias scramb="(cd $LOCALRT/src && scram b -j 24)"
+alias scrambr="(cd $LOCALRT/src && scram b -r clean && scram b -j 24)"
+alias scrambd="(cd $LOCALRT/src && env  USER_CXXFLAGS=-D=EDM_ML_DEBUG scram b -j 24)"
+
 hless () {highlight -A $* | less -n -r}
 eosrmdir () {
   eosrepo=$*
