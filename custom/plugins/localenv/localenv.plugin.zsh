@@ -22,9 +22,9 @@ export LS_COLORS="no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd
 
 # Use vim as pager
 
-if [ -e ${HOME}/vimpager/vimpager ]; then
-  export PAGER=${HOME}/vimpager/vimpager
-fi
+#if [ -e ${HOME}/vimpager/vimpager ]; then
+#  export PAGER=${HOME}/vimpager/vimpager
+#fi
 
 # GPG-AGENT stuff
 #
