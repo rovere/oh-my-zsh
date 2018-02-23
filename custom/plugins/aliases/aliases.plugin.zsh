@@ -44,25 +44,35 @@ alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && 
 
 # CMSSW
 
-scramb () {
-  pushd
-  cd $LOCALRT/src
-  scram b -j 24
-  popd
+check_cmssw_env () {
+: ${LOCALRT:?"Source CMSSW environment first"}
+}
+
+scrb () {
+  (
+  check_cmssw_env
+  pushd $LOCALRT/src &> /dev/null
+  scram b -j 24 2>&1 | tee errors.log
+  popd &> /dev/null
+  )
 }
 
 scrbr () {
-  pushd
-  cd $LOCALRT/src
-  scram b -r clean && scram b -j 24
-  popd
+  (
+  check_cmssw_env
+  pushd $LOCALRT/src &> /dev/null
+  scram b -r clean && scram b -j 24 2>&1 | tee errors.log
+  popd &> /dev/null
+  )
 }
 
 scrbd () {
-  pushd
-  cd $LOCALRT/src
-  env  USER_CXXFLAGS=-D=EDM_ML_DEBUG scram b -j 24
-  popd
+  (
+  check_cmssw_env
+  pushd $LOCALRT/src &> /dev/null
+  env  USER_CXXFLAGS=-D=EDM_ML_DEBUG scram b -j 24 2>&1 | tee errors.log
+  popd &> /dev/null
+  )
 }
 
 hless () {highlight -A $* | less -n -r}
