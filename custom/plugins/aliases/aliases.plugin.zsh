@@ -104,6 +104,34 @@ createTags() {
 }
 
 
+showMatrix() {
+  setopt shwordsplit
+  local -a samples
+  counter=1
+  echo "Select type, space separated"
+  for w in relval_standard relval_highstats relval_pileup relval_generator relval_extendedgen relval_production relval_ged relval_upgrade relval_2017 relval_2023 relval_identity relval_machine relval_unschrelval_premix; 
+  do
+    echo "${counter})\t${w}";
+    samples[counter]=${w}
+    (( counter+=1 ))
+  done
+  while true;
+  do
+    read selected
+    # Split using spaces
+    saveIFS="$IFS"
+    IFS=' '
+    sel=(${selected})
+    IFS="$saveIFS"
+    for w in $sel;
+    do
+      echo $samples[${w}]
+      runTheMatrix.py -w $samples[${w}] -n -e | grep -P "^\d{3}+" | cut -d '[' -f 1 | less 2>/dev/null;
+    done
+  done
+}
+
+#
 # Tmux default layout at CERN
 alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
 
