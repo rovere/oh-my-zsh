@@ -1,6 +1,6 @@
 export MAGICK_HOME="/usr/local/ImageMagick"
 export PATH="$MAGICK_HOME/bin:$PATH"
-export PATH="/usr/texbin:/usr/local/texlive/2015/bin/x86_64-darwin:$PATH"
+export PATH="/usr/texbin:/usr/local/texlive/2016/bin/x86_64-darwin:$PATH"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 
 # Setup ROOT
