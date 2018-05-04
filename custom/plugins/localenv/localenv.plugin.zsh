@@ -6,9 +6,11 @@ export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
 # Setup ROOT
 export ROOTSYS="/Users/rovere/root"
 export PYTHONPATH="$ROOTSYS/lib"
+export JUPYTER_PATH="${ROOTSYS}/lib:${HOME}/notebooks":$JUPYTER_PATH
 export PATH="$ROOTSYS/bin:$PATH"
 export PATH="~$USER/bin:$PATH"
 export PATH=/usr/local/MacGPG2/bin:${PATH}
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export DYLD_LIBRARY_PATH="$ROOTSYS/lib"
 
 # Setup Go
