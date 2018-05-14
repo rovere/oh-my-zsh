@@ -57,6 +57,15 @@ scrb () {
   )
 }
 
+scrbv () {
+  (
+  check_cmssw_env
+  pushd $LOCALRT/src &> /dev/null
+  scram b -v -j 24 2>&1 | tee errors.log
+  popd &> /dev/null
+  )
+}
+
 scrbr () {
   (
   check_cmssw_env
