@@ -64,6 +64,30 @@ function checkgpg() {
   return 0
 }
 
+function grabgpg() {
+  if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
+    echo "GPG-AGENT Running with PID: $(pgrep -u ${USER} gpg-agent)"
+    if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
+            if [ -n "${GPG_AGENT_INFO+1}" ]; then
+              echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
+              if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
+              else
+                echo "GPG Agent is running most likely in another shell" 
+                . $HOME/.gpg-agent-info_${HOSTNAME}
+                export GPG_AGENT_INFO
+                export SSH_AUTH_SOCK
+                GPG_TTY=$(tty)
+                export GPG_TTY
+              fi
+            fi
+    else
+	    echo "GPG Agent is running but has no active configuration"
+    fi
+  else
+            echo "GPG Agent is not running"
+  fi
+  checkgpg
+}
 function loadgpg() {
   if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
