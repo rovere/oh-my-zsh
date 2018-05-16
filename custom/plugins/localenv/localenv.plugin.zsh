@@ -35,65 +35,75 @@ function checkgpg() {
   if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
     echo "GPG-AGENT Running with PID: $(pgrep -u ${USER} gpg-agent)"
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
-            if [ -n "${GPG_AGENT_INFO+1}" ]; then
-              echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
-              if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
-              else
-                echo "GPG Agent is running most likely in another shell" 
-                return 1
-              fi
-            else
-              echo "GPG Agent is running most likely in another shell"
-              return 1
-            fi
-            if [ -n "${SSH_AUTH_SOCK+1}" ]; then
-              echo "SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}"
-            else
-              echo "GPG Agent is running most likely in another shell"
-              return 1
-            fi
-            echo "GPG_TTY: ${GPG_TTY}"
+      if [ -n "${GPG_AGENT_INFO+1}" ]; then
+        echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
+        if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
+        else
+          echo "GPG Agent is running most likely in another shell" 
+          return 1
+        fi
+      else
+        echo "GPG Agent is running most likely in another shell"
+        return 1
+      fi
+      if [ -n "${SSH_AUTH_SOCK+1}" ]; then
+        echo "SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}"
+      else
+        echo "GPG Agent is running most likely in another shell"
+        return 1
+      fi
+      echo "GPG_TTY: ${GPG_TTY}"
     else
-	    echo "GPG Agent is running but has no active configuration"
-            return 1
+      echo "GPG Agent is running but has no active configuration"
+      return 1
     fi
   else
-            echo "GPG Agent is not running"
-            return 1
+    echo "GPG Agent is not running"
+    return 1
   fi
   return 0
 }
+
+function loadgpgFromCfgfile() {
+  if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
+    . $HOME/.gpg-agent-info_${HOSTNAME}
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
+    GPG_TTY=$(tty)
+    export GPG_TTY
+  else
+    echo "Missing configuration file for this host"
+  fi
+}
+
 
 function grabgpg() {
   if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
     echo "GPG-AGENT Running with PID: $(pgrep -u ${USER} gpg-agent)"
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
-            if [ -n "${GPG_AGENT_INFO+1}" ]; then
-              echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
-              if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
-              else
-                echo "GPG Agent is running most likely in another shell" 
-                . $HOME/.gpg-agent-info_${HOSTNAME}
-                export GPG_AGENT_INFO
-                export SSH_AUTH_SOCK
-                GPG_TTY=$(tty)
-                export GPG_TTY
-              fi
-            fi
+      if [ -n "${GPG_AGENT_INFO+1}" ]; then
+        echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
+        if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
+        else
+          echo "GPG Agent is running most likely in another shell" 
+          loadgpgFromCfgfile
+        fi
+      else # It seems GPG is running but that the envs have never been set in this process/shell, do that now
+        loadgpgFromCfgfile
+      fi
     else
-	    echo "GPG Agent is running but has no active configuration"
+      echo "GPG Agent is running but has no active configuration"
     fi
   else
-            echo "GPG Agent is not running"
+    echo "GPG Agent is not running"
   fi
   checkgpg
 }
+
 function loadgpg() {
   if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
-	    . "$HOME/.gpg-agent-info_${HOSTNAME}"
-	    export GPG_AGENT_INFO
-	    export SSH_AUTH_SOCK
+      loadgpgFromCfgfile
     else
 	    echo "GPG Agent could not be setup"
     fi
@@ -102,13 +112,9 @@ function loadgpg() {
     if [ $? -ne 0 ]; then
       echo "gpg-agent could not be started'"
     else
-      . "${HOME}/.gpg-agent-info_${HOSTNAME}"
-	    export GPG_AGENT_INFO
-	    export SSH_AUTH_SOCK
+      loadgpgFromCfgfile
     fi
   fi
-  GPG_TTY=$(tty)
-  export GPG_TTY
 }
 
 # Kill gpg-agent, if active
