@@ -21,4 +21,4 @@ export TEXINPUTS="./:$HOME/Documents/Presentazioni:$HOME/CERN-tex/texmf-local/te
 # Setup source-highlight
 LESSPIPE=`which src-hilite-lesspipe.sh`
 export LESSOPEN="| ${LESSPIPE} %s"
-export LESS=' -R -X -F '
+export LESS='-C -M -I -j 10 -# 4 -R -F -X '
