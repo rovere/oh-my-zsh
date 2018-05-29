@@ -52,7 +52,7 @@ scrb () {
   (
   check_cmssw_env
   pushd $LOCALRT/src &> /dev/null
-  scram b -j 24 2>&1 | tee errors.log
+  scram b -j 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
@@ -61,7 +61,7 @@ scrbv () {
   (
   check_cmssw_env
   pushd $LOCALRT/src &> /dev/null
-  scram b -v -j 24 2>&1 | tee errors.log
+  scram b -v -j 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
@@ -69,8 +69,9 @@ scrbv () {
 scrbr () {
   (
   check_cmssw_env
+  echo "RESETTING SCRAM AREA"
   pushd $LOCALRT/src &> /dev/null
-  scram b -r clean && scram b -j 24 2>&1 | tee errors.log
+  scram b -r clean 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
@@ -78,8 +79,9 @@ scrbr () {
 scrbd () {
   (
   check_cmssw_env
+  echo "ENABLING DEBUGGING AND VERBOSE OUTPUT"
   pushd $LOCALRT/src &> /dev/null
-  env  USER_CXXFLAGS=-D=EDM_ML_DEBUG scram b -j 24 2>&1 | tee errors.log
+  env  USER_CXXFLAGS='-g' scram b -v -j 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
