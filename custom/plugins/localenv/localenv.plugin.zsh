@@ -1,24 +1,7 @@
-export MAGICK_HOME="/usr/local/ImageMagick"
-export PATH="$MAGICK_HOME/bin:$PATH"
-export PATH="/usr/texbin:/usr/local/texlive/2018/bin/x86_64-darwin:$PATH"
-export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib"
+export PATH="${HOME}/bin:$PATH"
 
-# Setup ROOT
-export ROOTSYS="/Users/rovere/root"
-export PYTHONPATH="$ROOTSYS/lib"
-export JUPYTER_PATH="${ROOTSYS}/lib:${HOME}/notebooks":$JUPYTER_PATH
-export PATH="$ROOTSYS/bin:$PATH"
-export PATH="~$USER/bin:$PATH"
-export PATH=/usr/local/MacGPG2/bin:${PATH}
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export DYLD_LIBRARY_PATH="$ROOTSYS/lib"
-
-# Setup Go
-export PATH="/usr/local/go/bin":${PATH}
-
-export TEXINPUTS="./:$HOME/Documents/Presentazioni:$HOME/CERN-tex/texmf-local/tex/{latex,generic,}//:"
+export TEXINPUTS="./:"
 
 # Setup source-highlight
-LESSPIPE=`which src-hilite-lesspipe.sh`
-export LESSOPEN="| ${LESSPIPE} %s"
 export LESS='-C -M -I -j 10 -# 4 -R -F -X '
+export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
