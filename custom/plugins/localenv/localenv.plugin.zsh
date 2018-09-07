@@ -71,6 +71,7 @@ function loadgpgFromCfgfile() {
     . $HOME/.gpg-agent-info_${HOSTNAME}
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
+    unset GPG_TTY
     GPG_TTY=$(tty)
     export GPG_TTY
   else
@@ -110,7 +111,7 @@ function loadgpg() {
 	    echo "GPG Agent could not be setup"
     fi
   else
-    gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --pinentry-program /usr/bin/pinentry-curses --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket
+    gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --pinentry-program /usr/bin/pinentry-gtk --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket
     if [ $? -ne 0 ]; then
       echo "gpg-agent could not be started'"
     else
