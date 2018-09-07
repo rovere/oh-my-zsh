@@ -118,16 +118,16 @@ createTags() {
 showMatrix() {
   setopt shwordsplit
   local -a samples
-  counter=1
-  echo "Select type, space separated"
-  for w in relval_standard relval_highstats relval_pileup relval_generator relval_extendedgen relval_production relval_ged relval_upgrade relval_2017 relval_2023 relval_identity relval_machine relval_unschrelval_premix; 
-  do
-    echo "${counter})\t${w}";
-    samples[counter]=${w}
-    (( counter+=1 ))
-  done
   while true;
   do
+    counter=1
+    echo "Select type, space separated"
+    for w in relval_standard relval_highstats relval_pileup relval_generator relval_extendedgen relval_production relval_ged relval_upgrade relval_2017 relval_2023 relval_identity relval_machine relval_unschrelval_premix; 
+    do
+      echo "${counter})\t${w}";
+      samples[counter]=${w}
+      (( counter+=1 ))
+    done
     read selected
     # Split using spaces
     saveIFS="$IFS"
