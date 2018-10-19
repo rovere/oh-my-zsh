@@ -1,5 +1,9 @@
 export PATH="${HOME}/bin:$PATH"
 
+if [ -e ${HOME}/anaconda2/bin ]; then
+  export PATH=${HOME}/anaconda2/bin:${PATH}
+fi
+
 export TEXINPUTS="./:"
 
 # Setup source-highlight
