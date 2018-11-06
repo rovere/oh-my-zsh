@@ -8,7 +8,6 @@ rbenv_version() {
   rbenv version 2>/dev/null | awk '{print $1}'
 }
 
-PROMPT='%{$fg[green]%}%n@%m %~%{$fg_bold[red]%}[%j]<%*>%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
 PROMPT='
 %{$fg[blue]%}%n@%m %{$fg[yellow]%} %~%{$fg_bold[red]%}[$? ${(Mw)#jobstates#running:}/${(Mw)#jobstates#suspended:}]%{$reset_color%}$(git_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 $ '
@@ -16,11 +15,9 @@ $ '
 # Must use Powerline font, for \uE0A0 to render.
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}\uE0A0 "
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ✘"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
-#ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
-#ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 RPROMPT='%{$fg_bold[red]%}$(rbenv_version)%{$reset_color%}'
 

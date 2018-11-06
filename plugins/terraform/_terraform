@@ -25,7 +25,6 @@ _terraform_cmds=(
 
 __apply() {
     _arguments \
-        '-auto-approve[Skip interactive approval of plan before applying.]' \
         '-backup=[(path) Path to backup the existing state file before modifying. Defaults to the "-state-out" path with ".backup" extension. Set to "-" to disable backup.]' \
         '-auto-approve[Skip interactive approval of plan before applying.]' \
         '-lock=[(true) Lock the state file when locking is supported.]' \
