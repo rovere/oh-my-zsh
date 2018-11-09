@@ -29,6 +29,9 @@ alias setupCrab='source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh && source /a
 
 alias t='/usr/bin/time -f "%E"'
 
+# Set up a pbcopy-like alias
+alias pbcopy='xsel --clipboard --input'
+
 hless () {highlight -A $* | less -n -r}
 
 createTags() {
