@@ -73,6 +73,11 @@ scrbd () {
   )
 }
 
+grr () {
+  check_cmssw_env
+  (cd $LOCALRT/src && git gr $*)
+}
+
 hless () {highlight -A $* | less -n -r}
 eosrmdir () {
   eosrepo=$*
