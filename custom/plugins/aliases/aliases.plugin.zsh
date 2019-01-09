@@ -81,11 +81,19 @@ scrbd () {
   check_cmssw_env
   echo "ENABLING DEBUGGING AND VERBOSE OUTPUT"
   pushd $LOCALRT/src &> /dev/null
-  env  USER_CXXFLAGS='-g' scram b -v -j 2>&1 | tee errors.log
+  env  USER_CXXFLAGS='-g -ggdb3 -O0' scram b -v -j 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
 
+scrbll () {
+  (
+  check_cmssw_env
+  pushd $LOCALRT/src &> /dev/null
+  USER_CXXFLAGS='-fsyntax-only' scram build -k -j COMPILER='llvm compile' 2>&1 | tee errors.log
+  popd &> /dev/null
+  )
+}
 grr () {
   check_cmssw_env
   (cd $LOCALRT/src && git gr $*)
