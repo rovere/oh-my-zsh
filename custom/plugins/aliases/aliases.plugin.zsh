@@ -35,7 +35,7 @@ alias pbcopy='xsel --clipboard --input'
 hless () {highlight -A $* | less -n -r}
 
 createTags() {
-  find -E ./  -regex '.*\.(h|cc|icc|cpp)$' > source_files.txt
+  find ./ -regextype posix-egrep -regex '.*\.(h|cc|icc|cpp)$' > source_files.txt
   cscope -b -i source_files.txt
   ctags --extra=+fq -L source_files.txt --verbose
 }
