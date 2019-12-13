@@ -43,6 +43,9 @@ alias t='/usr/bin/time -f "%E"'
 
 alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && release_notes.sh)'
 
+# CERNBOX
+alias cb='cd /eos/user/r/rovere/'
+
 # CMSSW
 
 check_cmssw_env () {
@@ -82,7 +85,7 @@ scrbd () {
   check_cmssw_env
   echo "ENABLING DEBUGGING AND VERBOSE OUTPUT"
   pushd $LOCALRT/src &> /dev/null
-  env  USER_CXXFLAGS='-g -ggdb3 -O0' scram b -v -j 2>&1 | tee errors.log
+  env  USER_CXXFLAGS='-g -ggdb3 -O0 -DEDM_ML_DEBUG' scram b -v -j 2>&1 | tee errors.log
   popd &> /dev/null
   )
 }
@@ -159,6 +162,13 @@ showMatrix() {
 #
 # Tmux default layout at CERN
 alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
+
+# Monitor an interactive command and display a tmux-message when finished
+
+m() {
+  $* ; tmux display-message "$? $* Done"
+}
+
 
 if [ -d /home/rovere/local/bin ]; then
   export PATH=/home/rovere/local/bin:$PATH
