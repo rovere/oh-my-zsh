@@ -176,3 +176,9 @@ if [ -d /home/rovere/local/bin ]; then
   export LD_LIBRARY_PATH=/home/rovere/local/lib:$LD_LIBRARY_PATH
   export MANPATH=/home/rovere/local/share/man:$MANPATH
 fi
+
+if [ -d /data/rovere/localvim/bin ]; then
+  export PATH=/data/rovere/localvim/bin/:$PATH
+  export MANPATH=/data/rovere/localvim/share/man:$MANPATH
+fi
+
