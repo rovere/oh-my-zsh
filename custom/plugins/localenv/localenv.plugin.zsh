@@ -4,6 +4,10 @@ if [ -e ${HOME}/anaconda2/bin ]; then
   export PATH=${HOME}/anaconda2/bin:${PATH}
 fi
 
+if [ -e ${HOME}/Firefox ]; then
+  export PATH=${HOME}/Firefox:${PATH}
+fi
+
 export TEXINPUTS="./:"
 
 # Setup source-highlight
