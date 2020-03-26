@@ -42,3 +42,8 @@ createTags() {
   cscope -b -i source_files.txt
   ctags --extra=+fq -L source_files.txt --verbose
 }
+
+pomodoro() {
+ (sleep 1500 && notify-send "Pomodoro session is over") &
+ disown
+}
