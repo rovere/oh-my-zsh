@@ -44,6 +44,6 @@ createTags() {
 }
 
 pomodoro() {
- (sleep 1500 && notify-send "Pomodoro session is over") &
+ (sleep 1500 && notify-send -t 100000 "Pomodoro session is over") &
  disown
 }
