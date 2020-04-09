@@ -37,13 +37,13 @@ if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
   BULLETTRAIN_STATUS_EXIT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
-  BULLETTRAIN_STATUS_BG=green
+  BULLETTRAIN_STATUS_BG=002
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_ERROR_BG+1}" ]; then
-  BULLETTRAIN_STATUS_ERROR_BG=red
+  BULLETTRAIN_STATUS_ERROR_BG=196
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_FG+1}" ]; then
-  BULLETTRAIN_STATUS_FG=white
+  BULLETTRAIN_STATUS_FG=231
 fi
 
 # TIME
@@ -51,10 +51,10 @@ if [ ! -n "${BULLETTRAIN_TIME_SHOW+1}" ]; then
   BULLETTRAIN_TIME_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_TIME_BG+1}" ]; then
-  BULLETTRAIN_TIME_BG=white
+  BULLETTRAIN_TIME_BG=154
 fi
 if [ ! -n "${BULLETTRAIN_TIME_FG+1}" ]; then
-  BULLETTRAIN_TIME_FG=black
+  BULLETTRAIN_TIME_FG=002
 fi
 
 # CUSTOM
@@ -129,10 +129,10 @@ if [ ! -n "${BULLETTRAIN_DIR_SHOW+1}" ]; then
   BULLETTRAIN_DIR_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_DIR_BG+1}" ]; then
-  BULLETTRAIN_DIR_BG=blue
+  BULLETTRAIN_DIR_BG=033
 fi
 if [ ! -n "${BULLETTRAIN_DIR_FG+1}" ]; then
-  BULLETTRAIN_DIR_FG=white
+  BULLETTRAIN_DIR_FG=019
 fi
 if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_DIR_CONTEXT_SHOW=false
@@ -152,10 +152,12 @@ if [ ! -n "${BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR+1}" ]; then
   BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR=yellow
 fi
 if [ ! -n "${BULLETTRAIN_GIT_BG+1}" ]; then
-  BULLETTRAIN_GIT_BG=white
+  # Read https://dev.to/yujinyuz/custom-colors-in-oh-my-zsh-themes-4h13
+  # for the color mapping/definition
+  BULLETTRAIN_GIT_BG=214
 fi
 if [ ! -n "${BULLETTRAIN_GIT_FG+1}" ]; then
-  BULLETTRAIN_GIT_FG=black
+  BULLETTRAIN_GIT_FG=000
 fi
 if [ ! -n "${BULLETTRAIN_GIT_EXTENDED+1}" ]; then
   BULLETTRAIN_GIT_EXTENDED=true
@@ -171,10 +173,10 @@ if [ ! -n "${BULLETTRAIN_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_BG+1}" ]; then
-  BULLETTRAIN_CONTEXT_BG=black
+  BULLETTRAIN_CONTEXT_BG=240
 fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_FG+1}" ]; then
-  BULLETTRAIN_CONTEXT_FG=default
+  BULLETTRAIN_CONTEXT_FG=231
 fi
 
 # GIT PROMPT
@@ -189,32 +191,38 @@ else
   ZSH_THEME_GIT_PROMPT_SUFFIX=$BULLETTRAIN_GIT_SUFFIX
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIRTY+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DIRTY=" ✘"
+  # UF057
+  ZSH_THEME_GIT_PROMPT_DIRTY=" "
 else
   ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
 fi
 if [ ! -n "${BULLETTRAIN_GIT_CLEAN+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
+  #UF058
+  ZSH_THEME_GIT_PROMPT_CLEAN=" "
 else
   ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
 fi
 if [ ! -n "${BULLETTRAIN_GIT_ADDED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}✚%F{black}"
+  #Uf055
+  ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_ADDED=$BULLETTRAIN_GIT_ADDED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_MODIFIED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_MODIFIED=" %F{blue}✹%F{black}"
+  #UE728
+  ZSH_THEME_GIT_PROMPT_MODIFIED=" "
 else
   ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DELETED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}✖%F{black}"
+  #UF056
+  ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_DELETED=$BULLETTRAIN_GIT_DELETED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_UNTRACKED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_UNTRACKED=" %F{yellow}✭%F{black}"
+  #UF192
+  ZSH_THEME_GIT_PROMPT_UNTRACKED=" %F{yellow}%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_UNTRACKED=$BULLETTRAIN_GIT_UNTRACKED
 fi
@@ -229,17 +237,20 @@ else
   ZSH_THEME_GIT_PROMPT_UNMERGED=$BULLETTRAIN_GIT_UNMERGED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_AHEAD+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
+  #UF01B
+  ZSH_THEME_GIT_PROMPT_AHEAD=" "
 else
   ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 fi
 if [ ! -n "${BULLETTRAIN_GIT_BEHIND+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
+  #UF01A
+  ZSH_THEME_GIT_PROMPT_BEHIND=" "
 else
   ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIVERGED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
+  #UF14D
+  ZSH_THEME_GIT_PROMPT_DIVERGED=" "
 else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
 fi
@@ -380,7 +391,7 @@ prompt_dir() {
 
   if [[ $BULLETTRAIN_DIR_EXTENDED == 0 ]]; then
     #short directories
-    dir="${dir}%1~"
+    dir="${dir}%2~"
   elif [[ $BULLETTRAIN_DIR_EXTENDED == 2 ]]; then
     #long directories
     dir="${dir}%0~"
@@ -479,10 +490,11 @@ prompt_status() {
 
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+="✘"
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="✘ $RETVAL"
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+=""
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+=" $RETVAL"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡%f"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
+  # UE615
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+=""
 
   if [[ -n "$symbols" && $RETVAL -ne 0 ]]; then
     prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
