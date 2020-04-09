@@ -37,13 +37,13 @@ if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
   BULLETTRAIN_STATUS_EXIT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
-  BULLETTRAIN_STATUS_BG=green
+  BULLETTRAIN_STATUS_BG=002
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_ERROR_BG+1}" ]; then
-  BULLETTRAIN_STATUS_ERROR_BG=red
+  BULLETTRAIN_STATUS_ERROR_BG=196
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_FG+1}" ]; then
-  BULLETTRAIN_STATUS_FG=white
+  BULLETTRAIN_STATUS_FG=231
 fi
 
 # TIME
@@ -51,10 +51,10 @@ if [ ! -n "${BULLETTRAIN_TIME_SHOW+1}" ]; then
   BULLETTRAIN_TIME_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_TIME_BG+1}" ]; then
-  BULLETTRAIN_TIME_BG=white
+  BULLETTRAIN_TIME_BG=154
 fi
 if [ ! -n "${BULLETTRAIN_TIME_FG+1}" ]; then
-  BULLETTRAIN_TIME_FG=black
+  BULLETTRAIN_TIME_FG=002
 fi
 
 # CUSTOM
@@ -129,10 +129,10 @@ if [ ! -n "${BULLETTRAIN_DIR_SHOW+1}" ]; then
   BULLETTRAIN_DIR_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_DIR_BG+1}" ]; then
-  BULLETTRAIN_DIR_BG=blue
+  BULLETTRAIN_DIR_BG=033
 fi
 if [ ! -n "${BULLETTRAIN_DIR_FG+1}" ]; then
-  BULLETTRAIN_DIR_FG=white
+  BULLETTRAIN_DIR_FG=019
 fi
 if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_DIR_CONTEXT_SHOW=false
@@ -152,10 +152,12 @@ if [ ! -n "${BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR+1}" ]; then
   BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR=yellow
 fi
 if [ ! -n "${BULLETTRAIN_GIT_BG+1}" ]; then
-  BULLETTRAIN_GIT_BG=white
+  # Read https://dev.to/yujinyuz/custom-colors-in-oh-my-zsh-themes-4h13
+  # for the color mapping/definition
+  BULLETTRAIN_GIT_BG=208
 fi
 if [ ! -n "${BULLETTRAIN_GIT_FG+1}" ]; then
-  BULLETTRAIN_GIT_FG=black
+  BULLETTRAIN_GIT_FG=000
 fi
 if [ ! -n "${BULLETTRAIN_GIT_EXTENDED+1}" ]; then
   BULLETTRAIN_GIT_EXTENDED=true
@@ -171,10 +173,10 @@ if [ ! -n "${BULLETTRAIN_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_BG+1}" ]; then
-  BULLETTRAIN_CONTEXT_BG=black
+  BULLETTRAIN_CONTEXT_BG=240
 fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_FG+1}" ]; then
-  BULLETTRAIN_CONTEXT_FG=default
+  BULLETTRAIN_CONTEXT_FG=231
 fi
 
 # GIT PROMPT
