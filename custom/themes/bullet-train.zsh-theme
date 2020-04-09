@@ -154,7 +154,7 @@ fi
 if [ ! -n "${BULLETTRAIN_GIT_BG+1}" ]; then
   # Read https://dev.to/yujinyuz/custom-colors-in-oh-my-zsh-themes-4h13
   # for the color mapping/definition
-  BULLETTRAIN_GIT_BG=208
+  BULLETTRAIN_GIT_BG=214
 fi
 if [ ! -n "${BULLETTRAIN_GIT_FG+1}" ]; then
   BULLETTRAIN_GIT_FG=000
