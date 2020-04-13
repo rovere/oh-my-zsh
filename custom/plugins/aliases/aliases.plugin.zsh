@@ -178,7 +178,11 @@ if [ -d /home/rovere/local/bin ]; then
 fi
 
 if [ -d /data/rovere/localvim/bin ]; then
-  export PATH=/data/rovere/localvim/bin/:$PATH
+  export PATH=/data/rovere/localvim/bin:$PATH
   export MANPATH=/data/rovere/localvim/share/man:$MANPATH
 fi
 
+if [ -d /data/rovere/node/bin/ ]; then
+  export PATH=/data/rovere/node/bin:$PATH
+  export MANPATH=/data/rovere/node/share/man/:$MANPATH
+fi
