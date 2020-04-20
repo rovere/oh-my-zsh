@@ -407,7 +407,7 @@ prompt_dir() {
 
   if [[ $BULLETTRAIN_DIR_EXTENDED == 0 ]]; then
     #short directories
-    dir="${dir}%1~"
+    dir="${dir}%2~"
   elif [[ $BULLETTRAIN_DIR_EXTENDED == 2 ]]; then
     #long directories
     dir="${dir}%0~"
