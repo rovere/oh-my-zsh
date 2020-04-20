@@ -47,6 +47,9 @@ alias make_release_notes='(cd /afs/cern.ch/work/r/rovere/public/ReleaseNotes && 
 # CERNBOX
 alias cb='cd /eos/user/r/rovere/'
 
+# Edit file in readonly mode using vim
+alias lr='vim -R'
+
 # CMSSW
 
 check_cmssw_env () {
