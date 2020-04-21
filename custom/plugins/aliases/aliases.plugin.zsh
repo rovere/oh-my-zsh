@@ -109,6 +109,30 @@ scrbll () {
   popd &> /dev/null
   )
 }
+
+# Generate local compile_commands.json and merge it with the one from the main release
+scrbcc () {
+  check_cmssw_env
+  echo "BUILDING COMPILE_COMMANDS FILE FOR CLANGD"
+  pushd $LOCALRT/src &> /dev/null
+  echo "GENERATING LOCAL DATABASE"
+  scram b llvm-ccdb 2>&1 | tee errors.log
+  # Read https://unix.stackexchange.com/questions/14270/get-exit-status-of-process-thats-piped-to-another
+  check_errors ${pipestatus[1]} "Generation of local compile_commands failed."
+  # Check if jq command is available
+  command -v jq &> /dev/null
+  check_errors $? "jq command not found."
+  # Copy the master compile_commands.json file locally
+  echo "COPYING OVER THE RELEASE DATABASE"
+  cp $CMSSW_RELEASE_BASE/compile_commands.json .
+  echo "MERGING THE 2 DATABASES"
+  # Merge the two files. Read https://github.com/stedolan/jq/issues/805
+  jq -s '[.[][]]' ../compile_commands.json compile_commands.json > manifest.json
+  mv manifest.json compile_commands.json
+  echo "DONE"
+  popd &> /dev/null
+}
+
 grr () {
   check_cmssw_env
   (cd $LOCALRT/src && git gr $*)
