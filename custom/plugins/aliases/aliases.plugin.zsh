@@ -50,6 +50,13 @@ alias cb='cd /eos/user/r/rovere/'
 # Edit file in readonly mode using vim
 alias lr='vim -R'
 
+check_errors () {
+ if [ "${1}" -ne 0 ]; then
+   echo "ERROR # ${1} : ${2}"
+   exit ${1}
+ fi
+}
+
 # CMSSW
 
 check_cmssw_env () {
