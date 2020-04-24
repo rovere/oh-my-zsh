@@ -413,7 +413,7 @@ prompt_dir() {
     dir="${dir}%0~"
   else
     #medium directories (default case)
-    dir="${dir}%20<...<%~%<<"
+    dir="${dir}%30>...>%2d%<<"
 #    dir="${dir}%2(c:...:)%3c"
   fi
 
