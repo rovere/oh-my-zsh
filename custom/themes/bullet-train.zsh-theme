@@ -141,6 +141,27 @@ if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
   BULLETTRAIN_DIR_EXTENDED=1
 fi
 
+# KERBEROS
+if [ ! -n "${BULLETTRAIN_KRB_SHOW+1}" ]; then
+  BULLETTRAIN_KRB_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_KRB_BG+1}" ]; then
+  BULLETTRAIN_KRB_BG=154
+fi
+if [ ! -n "${BULLETTRAIN_KRB_FG+1}" ]; then
+  BULLETTRAIN_KRB_FG=002
+fi
+if [ ! -n "${BULLETTRAIN_KRB_LIMIT_BG+1}" ]; then
+  BULLETTRAIN_KRB_LIMIT_BG=009
+fi
+if [ ! -n "${BULLETTRAIN_KRB_LIMIT_FG+1}" ]; then
+  BULLETTRAIN_KRB_LIMIT_FG=255
+fi
+if [ ! -n "${BULLETTRAIN_KRB_PROMPT_SYM+1}" ]; then
+  #UF058
+  BULLETTRAIN_KRB_PROMPT_SYM=""
+fi
+
 # GIT
 if [ ! -n "${BULLETTRAIN_GIT_SHOW+1}" ]; then
   BULLETTRAIN_GIT_SHOW=true
@@ -420,6 +441,29 @@ prompt_dir() {
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
+# Kerberos: current lifetime of the kerberos ticket
+prompt_krb() {
+  if [[ $BULLETTRAIN_KRB_SHOW == false ]]; then
+    return
+  fi
+
+  local now=$(date "+%s")
+  local end_current=$(date -d "$(klist | grep krbtgt | awk '{print $3, $4}')" "+%s")
+  local end_renew=$(date -d "$(klist | grep renew | uniq | awk '{print $3, $4}')" "+%s")
+  local days=$(( ($end_current - $now ) / 86400 ))
+  local hours=$(( (($end_current - $now) - $days * 86400) / 3600 ))
+  local minutes=$(( (($end_current - $now) - $days * 86400 - $hours * 3600) / 60  ))
+  local renew_days=$(( ($end_renew - $now) / 86400 ))
+  local renew_hours=$(( (($end_renew - $now) - $renew_days * 86400) / 3600 ))
+  local renew_minutes=$(( (($end_renew - $now) - $renew_days * 86400 - $renew_hours * 3600) / 60  ))
+
+  if [[ ${renew_days} -eq 0 ]]; then
+    prompt_segment $BULLETTRAIN_KRB_LIMIT_BG $BULLETTRAIN_KRB_LIMIT_FG "$BULLETTRAIN_KRB_PROMPT_SYM ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m"
+  else
+    prompt_segment $BULLETTRAIN_KRB_BG $BULLETTRAIN_KRB_FG "$BULLETTRAIN_KRB_PROMPT_SYM ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m"
+  fi
+}
+
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
@@ -560,6 +604,7 @@ build_prompt() {
   prompt_custom
   prompt_context
   prompt_dir
+  prompt_krb
   prompt_ruby
   prompt_virtualenv
   prompt_nvm
