@@ -71,36 +71,9 @@ function loadgpgFromCfgfile() {
     . $HOME/.gpg-agent-info_${HOSTNAME}
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
-    unset GPG_TTY
-    GPG_TTY=$(tty)
-    export GPG_TTY
   else
     echo "Missing configuration file for this host"
   fi
-}
-
-
-function grabgpg() {
-  if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
-    echo "GPG-AGENT Running with PID: $(pgrep -u ${USER} gpg-agent)"
-    if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
-      if [ -n "${GPG_AGENT_INFO+1}" ]; then
-        echo "GPG_AGENT_INFO: ${GPG_AGENT_INFO}"
-        if [ $(echo "$GPG_AGENT_INFO" | tr ':' ' ' | awk '{print $2}') = $(pgrep -u ${USER} gpg-agent) ];  then
-        else
-          echo "GPG Agent is running most likely in another shell" 
-          loadgpgFromCfgfile
-        fi
-      else # It seems GPG is running but that the envs have never been set in this process/shell, do that now
-        loadgpgFromCfgfile
-      fi
-    else
-      echo "GPG Agent is running but has no active configuration"
-    fi
-  else
-    echo "GPG Agent is not running"
-  fi
-  checkgpg
 }
 
 function loadgpg() {
@@ -108,7 +81,7 @@ function loadgpg() {
     if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
       loadgpgFromCfgfile
     else
-	    echo "GPG Agent could not be setup"
+      echo "GPG Agent could not be setup"
     fi
   else
     gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --pinentry-program /usr/bin/pinentry-gtk --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
@@ -147,3 +120,14 @@ machine=$(hostname -s)
 if [[ ${machine} == "vinavx2" ]]; then
   loadgpg
 fi
+
+if [[ ${machine} == "olivb-25" ]]; then
+  loadgpg
+fi
+
+# We setup this env every single time we enter a new shell session. If gpg is
+# active, it will pick up the corret tty, if it is not, it will once it will be
+# active.
+unset GPG_TTY
+GPG_TTY=$(tty)
+export GPG_TTY
