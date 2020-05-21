@@ -130,4 +130,6 @@ fi
 # active.
 unset GPG_TTY
 GPG_TTY=$(tty)
+GIT_ASKPASS=$(which pinentry-gtk)
 export GPG_TTY
+export GIT_ASKPASS
