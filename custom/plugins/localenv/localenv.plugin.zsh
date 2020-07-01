@@ -19,6 +19,16 @@ function gpgpin() {
   return $?
 }
 
+function secret () {
+        output="${1}".$(date +%s).enc
+        gpg --encrypt --armor --output ${output} -r marco.rovere@cern.ch "${1}" && echo "${1} -> ${output}"
+}
+
+function reveal () {
+        output=$(echo "${1}" | rev | cut -c16- | rev)
+        gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
+}
+
 function prdates() {
   token=$(cat ~/.private/.github.token)
   prjson=$(curl -H "Authorization: token ${token}" https://api.github.com/repos/cms-sw/cmssw/issues/$1 2>/dev/null)
