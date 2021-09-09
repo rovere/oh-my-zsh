@@ -87,3 +87,17 @@ function pdf2png() {
    -sharpen 0x1.0 \
     $out.png
 }
+
+function ghloop() {
+  while true
+    gh $1
+  do
+  done
+}
+
+function gloop() {
+  while true
+    git $1
+  do
+  done
+}
