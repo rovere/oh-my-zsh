@@ -8,6 +8,19 @@ if [ -e ${HOME}/Firefox ]; then
   export PATH=${HOME}/Firefox:${PATH}
 fi
 
+if [ -e ${HOME}/texlive2021/bin/x86_64-linux ]; then
+  export PATH=${HOME}/texlive2021/bin/x86_64-linux:${PATH}
+fi
+
+if [ -e ${HOME}/texlive2021/texmf-dist/doc/man ]; then
+  export MANPATH=${HOME}/texlive2021/texmf-dist/doc/man:${MANPATH}
+fi
+
+if [ -e ${HOME}/texlive2021/texmf-dist/doc/info ]; then
+  export INFOPATH=${HOME}/texlive2021/texmf-dist/doc/info:${INFOPATH}
+fi
+
+
 export TEXINPUTS="./:"
 
 # Setup source-highlight
