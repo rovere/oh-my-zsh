@@ -192,31 +192,31 @@ else
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIRTY+1}" ]; then
   # UF057
-  ZSH_THEME_GIT_PROMPT_DIRTY=" "
+  ZSH_THEME_GIT_PROMPT_DIRTY=" ✘"
 else
   ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
 fi
 if [ ! -n "${BULLETTRAIN_GIT_CLEAN+1}" ]; then
   #UF058
-  ZSH_THEME_GIT_PROMPT_CLEAN=" "
+  ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
 else
   ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
 fi
 if [ ! -n "${BULLETTRAIN_GIT_ADDED+1}" ]; then
   #Uf055
-  ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}%F{black}"
+  ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}✚%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_ADDED=$BULLETTRAIN_GIT_ADDED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_MODIFIED+1}" ]; then
   #UE728
-  ZSH_THEME_GIT_PROMPT_MODIFIED=" "
+  ZSH_THEME_GIT_PROMPT_MODIFIED=" ✱"
 else
   ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DELETED+1}" ]; then
   #UF056
-  ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}%F{black}"
+  ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}✝%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_DELETED=$BULLETTRAIN_GIT_DELETED
 fi
@@ -238,19 +238,19 @@ else
 fi
 if [ ! -n "${BULLETTRAIN_GIT_AHEAD+1}" ]; then
   #UF01B
-  ZSH_THEME_GIT_PROMPT_AHEAD=" "
+  ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
 else
   ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 fi
 if [ ! -n "${BULLETTRAIN_GIT_BEHIND+1}" ]; then
   #UF01A
-  ZSH_THEME_GIT_PROMPT_BEHIND=" "
+  ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
 else
   ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIVERGED+1}" ]; then
   #UF14D
-  ZSH_THEME_GIT_PROMPT_DIVERGED=" "
+  ZSH_THEME_GIT_PROMPT_DIVERGED=" ⟷"
 else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
 fi
@@ -490,11 +490,11 @@ prompt_status() {
 
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+=""
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+=" $RETVAL"
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+="✽"
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="✽ $RETVAL"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡%f"
   # UE615
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+=""
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="✽"
 
   if [[ -n "$symbols" && $RETVAL -ne 0 ]]; then
     prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
