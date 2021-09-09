@@ -33,7 +33,7 @@ alias t='/usr/bin/time -f "%E"'
 alias lr='vim -R'
 
 # Set up a pbcopy-like alias
-alias pbcopy='xsel --clipboard --input'
+alias pbcopy='xsel --primary --input'
 
 hless () {highlight -A $* | less -n -r}
 
