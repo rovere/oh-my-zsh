@@ -179,6 +179,21 @@ showMatrix() {
   done
 }
 
+makeWebDir() {
+  ln -s /eos/user/r/rovere/www/php-plots/res
+  if [ "$?" -ne "0" ]; then
+    return_value=$?
+    echo "Link failed. Abort."
+    return return_value
+  fi
+
+  ln -s /eos/user/r/rovere/www/php-plots/index.php
+  if [ "$?" -ne "0" ]; then
+    return_value=$?
+    echo "Link failed. Abort."
+    return return_value
+  fi
+}
 #
 # Tmux default layout at CERN
 alias tmux_cern="tmux select-layout 'efae,318x98,0,0{140x98,0,0,177x98,141,0[177x32,141,0,177x32,141,33,177x32,141,66]}'"
