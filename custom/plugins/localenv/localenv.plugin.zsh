@@ -88,6 +88,17 @@ function pdf2png() {
     $out.png
 }
 
+function ghmenu() {
+  while true
+    available_aliases=$(gh alias list | cut -c -60 | awk '{print NR, $0}')
+    echo "${available_aliases}"
+    echo -n "ghloop> "
+    read command
+    ghloop ${command}
+  do
+  done
+}
+
 function ghloop() {
   while true
     gh $1
