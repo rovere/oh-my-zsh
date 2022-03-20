@@ -440,6 +440,16 @@ prompt_dir() {
 
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
+#
+# gpg: check if gpg terminal is properly setup
+prompt_gpg() {
+  checkGPGTTY
+  if [[ $? == 0 ]]; then
+    prompt_segment 236 254 "ok"
+  else
+    prompt_segment 196 254 "!!"
+  fi
+}
 
 # Kerberos: current lifetime of the kerberos ticket
 prompt_krb() {
@@ -604,6 +614,7 @@ build_prompt() {
   prompt_custom
   prompt_context
   prompt_dir
+  prompt_gpg
   prompt_krb
   prompt_ruby
   prompt_virtualenv
