@@ -71,6 +71,8 @@ function loadgpgFromCfgfile() {
     . $HOME/.gpg-agent-info_${HOSTNAME}
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
+    GPG_TTY=$(tty)
+    export GPG_TTY
   else
     echo "Missing configuration file for this host"
   fi
@@ -84,7 +86,7 @@ function loadgpg() {
       echo "GPG Agent could not be setup"
     fi
   else
-    gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --pinentry-program /usr/bin/pinentry-gtk --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
+    gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
     if [ $? -ne 0 ]; then
       echo "gpg-agent could not be started'"
     else
@@ -125,11 +127,23 @@ if [[ ${machine} == "olivb-25" ]]; then
   loadgpg
 fi
 
+# Check if GPG_TTY is ok for the current shell with the current tty
+
+function checkGPGTTY () {
+  if [ -n "${GPG_TTY+1}" ]; then
+    THIS_TERM=`tty`
+    if [[ $GPG_TTY == $THIS_TERM ]]; then
+      return 0
+    fi
+  fi
+  return 1
+}
+
 # We setup this env every single time we enter a new shell session. If gpg is
 # active, it will pick up the corret tty, if it is not, it will once it will be
 # active.
 unset GPG_TTY
 GPG_TTY=$(tty)
-GIT_ASKPASS=$(which pinentry-gtk)
+GIT_ASKPASS=$(which pinentry-curses)
 export GPG_TTY
 export GIT_ASKPASS
