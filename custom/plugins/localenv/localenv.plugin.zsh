@@ -48,12 +48,6 @@ function checkgpg() {
         echo "GPG Agent is running most likely in another shell"
         return 1
       fi
-      if [ -n "${SSH_AUTH_SOCK+1}" ]; then
-        echo "SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}"
-      else
-        echo "GPG Agent is running most likely in another shell"
-        return 1
-      fi
       echo "GPG_TTY: ${GPG_TTY}"
     else
       echo "GPG Agent is running but has no active configuration"
@@ -70,7 +64,6 @@ function loadgpgFromCfgfile() {
   if [ -f "$HOME/.gpg-agent-info_${HOSTNAME}" ]; then
     . $HOME/.gpg-agent-info_${HOSTNAME}
     export GPG_AGENT_INFO
-    export SSH_AUTH_SOCK
     GPG_TTY=$(tty)
     export GPG_TTY
   else
@@ -86,7 +79,7 @@ function loadgpg() {
       echo "GPG Agent could not be setup"
     fi
   else
-    gpg-agent --daemon -v --debug-level 6 --enable-ssh-support --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
+    gpg-agent --daemon -v --debug-level 6 --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
     if [ $? -ne 0 ]; then
       echo "gpg-agent could not be started'"
     else
@@ -105,7 +98,6 @@ function killgpg() {
        fi
     fi
     unset GPG_AGENT_INFO
-    unset SSH_AUTH_SOCK
     unset GPG_TTY
 }
 
