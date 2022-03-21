@@ -130,10 +130,12 @@ fi
 # Check if GPG_TTY is ok for the current shell with the current tty
 
 function checkGPGTTY () {
-  if [ -n "${GPG_TTY+1}" ]; then
-    THIS_TERM=`tty`
-    if [[ $GPG_TTY == $THIS_TERM ]]; then
-      return 0
+  if pgrep -u ${USER} gpg-agent > /dev/null 2>&1 ; then
+    if [ -n "${GPG_TTY+1}" ]; then
+      THIS_TERM=`tty`
+      if [[ $GPG_TTY == $THIS_TERM ]]; then
+        return 0
+      fi
     fi
   fi
   return 1
