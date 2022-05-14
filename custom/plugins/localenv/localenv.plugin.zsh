@@ -1,9 +1,5 @@
 export PATH="${HOME}/bin:$PATH"
 
-if [ -e ${HOME}/anaconda2/bin ]; then
-  export PATH=${HOME}/anaconda2/bin:${PATH}
-fi
-
 if [ -e ${HOME}/Firefox ]; then
   export PATH=${HOME}/Firefox:${PATH}
 fi
@@ -89,10 +85,12 @@ function pdf2png() {
 }
 
 function ghmenu() {
+  RED=`tput setaf 1`
+  RESET=`tput sgr0`  # Reset
   while true
     available_aliases=$(gh alias list | cut -c -60 | awk '{print NR, $0}')
     echo "${available_aliases}"
-    echo -n "ghloop> "
+    echo -n "${RED}ghloop${RESET}> "
     read command
     ghloop ${command}
   do
