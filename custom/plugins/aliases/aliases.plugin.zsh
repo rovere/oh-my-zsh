@@ -1,6 +1,5 @@
 alias lt='ls -latrGF'
-alias ssh_pcmagni="ssh -t -Y rovere@pcmagni.mib.infn.it"
-alias ssh_pomense="ssh -t -Y rovere@pomense.mib.infn.it"
+alias els='exa -lFam -s modified'
 alias ssh_lxplus="ssh -t -Y rovere@lxplus.cern.ch"
 alias ssh_cmsusr0="ssh -t -Y rovere@cmsusr0"
 alias ssh_cmsusr1="ssh -t -Y rovere@cmsusr1"
