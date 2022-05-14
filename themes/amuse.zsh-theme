@@ -15,7 +15,13 @@ PROMPT='
 %{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info)$(virtualenv_prompt_info) ⌚ %{$fg_bold[red]%}%*%{$reset_color%}
 $ '
 
-RPROMPT='$(ruby_prompt_info)'
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}⤣ "
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%} ✘"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
+#ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
+#ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 VIRTUAL_ENV_DISABLE_PROMPT=0
 ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX=" %{$fg[green]%}🐍 "
