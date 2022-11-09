@@ -16,6 +16,18 @@ prompt_user_machine() {
     echo "%{$fg_bold[yellow]%}%n%{$reset_color%} in %{$fg_bold[green]%m%}%{$reset_color%}"
 }
 
+prompt_git_summary() {
+  local added=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\+\)/, a) {print a[1]}')
+  if [[ "$added" = "" ]] ; then
+    added="0"
+  fi
+  local deleted=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\-\)/, a) {print a[1]}')
+  if [[ "$deleted" = "" ]] ; then
+    deleted="0"
+  fi
+  echo "%{$fg_bold[green]%}+$added%{$reset_color%}%{$fg_bold[red] -$deleted%}%{$reset_color%} "
+}
+
 prompt_krb() {
   local now=$(date "+%s")
   local end_current=$(date -d "$(klist | grep krbtgt | awk '{print $3, $4}')" "+%s")
@@ -35,7 +47,7 @@ prompt_krb() {
 }
 
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) $(prompt_user_machine)"
-PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)$(prompt_git_summary)'
 PROMPT+='$(prompt_gpg)$(prompt_krb)$(close_prompt)'
 
 
