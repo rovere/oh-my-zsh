@@ -19,15 +19,17 @@ prompt_user_machine() {
 }
 
 prompt_git_summary() {
-  local added=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\+\)/, a) {print a[1]}')
-  if [[ "$added" = "" ]] ; then
-    added="0"
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1 ; then
+    local added=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\+\)/, a) {print a[1]}')
+    if [[ "$added" = "" ]] ; then
+      added="0"
+    fi
+    local deleted=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\-\)/, a) {print a[1]}')
+    if [[ "$deleted" = "" ]] ; then
+      deleted="0"
+    fi
+    echo "%{$fg_bold[green]%}+$added%{$reset_color%}%{$fg_bold[red] -$deleted%}%{$reset_color%} "
   fi
-  local deleted=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\-\)/, a) {print a[1]}')
-  if [[ "$deleted" = "" ]] ; then
-    deleted="0"
-  fi
-  echo "%{$fg_bold[green]%}+$added%{$reset_color%}%{$fg_bold[red] -$deleted%}%{$reset_color%} "
 }
 
 prompt_krb() {
