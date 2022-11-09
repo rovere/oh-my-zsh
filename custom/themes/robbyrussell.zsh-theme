@@ -11,11 +11,11 @@ prompt_gpg() {
 }
 
 close_prompt() {
-    echo "\nat %{$fg_bold[yellow]%T%} %{$fg_bold[green]%} ❯ %{$reset_color%}"
+    echo "\n%{$fg_bold[green]%}❯ %{$reset_color%}"
 }
 
 prompt_user_machine() {
-    echo "%{$fg_bold[yellow]%}%n%{$reset_color%} in %{$fg_bold[green]%m%}%{$reset_color%}"
+    echo "At %{$fg_bold[yellow] [%T]%}%{$fg_bold[yellow]%} %n%{$reset_color%} in %{$fg_bold[green]%m%}%{$reset_color%}"
 }
 
 prompt_git_summary() {
@@ -55,7 +55,7 @@ prompt_krb() {
 }
 
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) $(prompt_user_machine)"
-PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)$(prompt_git_summary)'
+PROMPT+=' %{$fg_bold[yellow]%}%2~%{$reset_color%} $(git_prompt_info)$(prompt_git_summary)'
 PROMPT+='$(prompt_gpg)$(prompt_krb)$(close_prompt)'
 
 
