@@ -115,7 +115,7 @@ if [[ ${machine} == "vinavx2" ]]; then
   loadgpg
 fi
 
-if [[ ${machine} == "olivb-25" ]]; then
+if [[ ${machine} == "olivb-25"  || ${machine} == "olivb-26" ]]; then
   loadgpg
 fi
 
