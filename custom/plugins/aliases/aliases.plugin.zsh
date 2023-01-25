@@ -1,4 +1,5 @@
 alias lt='ls -latrGF'
+alias ll='ls -latrGFh'
 alias ssh_pcmagni="ssh -t -Y rovere@pcmagni.mib.infn.it"
 alias ssh_pomense="ssh -t -Y rovere@pomense.mib.infn.it"
 alias ssh_lxplus="ssh -t -Y rovere@lxplus.cern.ch"
