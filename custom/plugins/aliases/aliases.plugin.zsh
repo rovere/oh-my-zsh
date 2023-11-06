@@ -30,9 +30,14 @@ alias t='/usr/bin/time -f "%E"'
 
 # Edit file in readonly mode using vim
 alias lr='vim -R'
+fzf-vim() {
+    ls -1rt "$@" | grep -v / | fzf --tac --preview "batcat --color=always {}" --preview-window=right:50%:wrap | xargs -r -d '\n' vim
+}
 
 # Set up a pbcopy-like alias
 alias pbcopy='xsel --primary --input'
+alias cbcopy='xsel --clipboard --input'
+alias showsel='echo PRIMARY is $(xsel -p); echo SECONDARY is $(xsel -s); echo CLIPBOARD is $(xsel -b)'
 
 hless () {highlight -A $* | less -n -r}
 
