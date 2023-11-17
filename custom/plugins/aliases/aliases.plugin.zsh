@@ -9,6 +9,7 @@ alias ssh_pccms94="ssh -t -Y rovere@pccms94.cern.ch"
 alias proxyCern="ssh -t -D 1934 rovere@lxplus.cern.ch"
 alias proxyP5="ssh -t -L 1934:localhost:1080 rovere@lxplus.cern.ch ssh -t -D 1080 rovere@cmsusr1"
 alias proxyCernP5="ssh -D 1934 rovere@cmsusr1"
+alias lumi="ssh -i .ssh/id_rsa_lumi marovere@lumi.csc.fi"
 
 alias b150="ssh -t -Y lxbuild150.cern.ch"
 alias b046="ssh -t -Y lxbuild046.cern.ch" 
