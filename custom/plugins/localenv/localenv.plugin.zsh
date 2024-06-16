@@ -138,6 +138,6 @@ function checkGPGTTY () {
 # active.
 unset GPG_TTY
 GPG_TTY=$(tty)
-GIT_ASKPASS=$(which pinentry-curses)
+# GIT_ASKPASS=$(which pinentry-curses)
 export GPG_TTY
-export GIT_ASKPASS
+# export GIT_ASKPASS

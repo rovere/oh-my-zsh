@@ -31,7 +31,7 @@ function box_name {
 }
 
 prompt_git_summary() {
-  __git_prompt_git rev-parse --git-dir &> /dev/null
+  git rev-parse --git-dir &> /dev/null
   if [[ "$?" == 0 ]]; then
 #  if git rev-parse --is-inside-work-tree > /dev/null 2>&1 ; then
     local added=$(git --no-pager diff --shortstat | gawk 'match($0, /([0-9]+) \w+\(\+\)/, a) {print a[1]}')
@@ -70,16 +70,16 @@ prompt_krb() {
     local renew_minutes=$(( (($end_renew - $now) - $renew_days * 86400 - $renew_hours * 3600) / 60  ))
 
     if [[ ${renew_days} -eq 0 ]]; then
-      echo "%{$fg_bold[green] ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m%}%{$reset_color%}"
+      echo "%{$FG[040]%} ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m%{$reset_color%} "
     else
-      echo "%{$fg_bold[green] ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m%}%{$reset_color%}"
+      echo "%{$FG[040]%} ${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m%{$reset_color%} "
     fi
   else
-    echo "%{$fg_bold[green]NoKRB%{$reset_color%}"
+    echo "%{$FG[040]%}NoKRB%{$reset_color%} "
   fi
 }
 
-PROMPT="╭─%{$FG[040]%}%n%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$(box_name)%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}%~%{$reset_color%} \$(git_prompt_info)\$(prompt_git_summary)\$(ruby_prompt_info)
+PROMPT="╭─%{$FG[040]%}%n%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$(box_name)%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}%~%{$reset_color%} \$(prompt_krb)\$(git_prompt_info)\$(prompt_git_summary)\$(ruby_prompt_info)
 ╰─\$(virtualenv_info)\$(prompt_char) "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$FG[239]%}on%{$reset_color%} %{$fg[255]%}"
