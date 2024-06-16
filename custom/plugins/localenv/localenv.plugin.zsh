@@ -4,6 +4,14 @@ if [ -e ${HOME}/Firefox ]; then
   export PATH=${HOME}/Firefox:${PATH}
 fi
 
+if [ -e /opt/nvim-linux64/bin ]; then
+  export PATH=/opt/nvim-linux64/bin:${PATH}
+fi
+
+if [ -e ${HOME}/lazygit ]; then
+  export PATH=${HOME}/lazygit:${PATH}
+fi
+
 if [ -e ${HOME}/texlive2021/bin/x86_64-linux ]; then
   export PATH=${HOME}/texlive2021/bin/x86_64-linux:${PATH}
 fi
