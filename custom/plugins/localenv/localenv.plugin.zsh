@@ -151,3 +151,25 @@ GPG_TTY=$(tty)
 # GIT_ASKPASS=$(which pinentry-curses)
 export GPG_TTY
 # export GIT_ASKPASS
+#
+#
+# TO BE FINALIZED
+prompt_my_krb_validity() {
+  if [[ "$HOSTNAME" =~ "cern.ch" ]]; then
+    local now=$(date "+%s")
+    local end_current=$(date -d "$(klist | grep krbtgt | awk '{print $3, $4}')" "+%s")
+    local end_renew=$(date -d "$(klist | grep renew | uniq | awk '{print $3, $4}')" "+%s")
+    local days=$(( ($end_current - $now ) / 86400 ))
+    local hours=$(( (($end_current - $now) - $days * 86400) / 3600 ))
+    local minutes=$(( (($end_current - $now) - $days * 86400 - $hours * 3600) / 60  ))
+    local renew_days=$(( ($end_renew - $now) / 86400 ))
+    local renew_hours=$(( (($end_renew - $now) - $renew_days * 86400) / 3600 ))
+    local renew_minutes=$(( (($end_renew - $now) - $renew_days * 86400 - $renew_hours * 3600) / 60  ))
+
+    if [[ ${renew_days} -eq 0 ]]; then
+      p10k segment -s HOT -f red -t "${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m"
+    else
+      p10k segment -s NORMAL -f green -t "${days}d${hours}h${minutes}m ${renew_days}d${renew_hours}h${renew_minutes}m"
+    fi
+  fi
+}
