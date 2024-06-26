@@ -10,6 +10,7 @@ fi
 
 if [ -e ${HOME}/lazygit ]; then
   export PATH=${HOME}/lazygit:${PATH}
+  alias lg=lazygit
 fi
 
 if [ -e ${HOME}/texlive2021/bin/x86_64-linux ]; then
