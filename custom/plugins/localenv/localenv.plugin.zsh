@@ -25,6 +25,11 @@ if [ -e ${HOME}/texlive2021/texmf-dist/doc/info ]; then
   export INFOPATH=${HOME}/texlive2021/texmf-dist/doc/info:${INFOPATH}
 fi
 
+# Custom node installation to make LSP in nvim work
+if [ -e ${HOME}/Node/bin ]; then
+  export INFOPATH=${HOME}/Node/bin:${INFOPATH}
+fi
+
 
 export TEXINPUTS="./:"
 
