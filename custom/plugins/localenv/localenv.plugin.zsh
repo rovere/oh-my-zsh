@@ -27,7 +27,7 @@ fi
 
 # Custom node installation to make LSP in nvim work
 if [ -e ${HOME}/Node/bin ]; then
-  export INFOPATH=${HOME}/Node/bin:${INFOPATH}
+  export PATH=${HOME}/Node/bin:${PATH}
 fi
 
 
