@@ -19,8 +19,8 @@ if [ $HOSTNAME != "mrovere-slc7.cern.ch" ]; then
 fi
 
 # If nvim is there, put it into the PATH env variable
-if [ -e /data/rovere/nvim/nvim-linux64/bin ]; then
-  export PATH=/data/rovere/nvim/nvim-linux64/bin:${PATH}
+if [ -e /data/rovere/nvim/nvim-linux-x86_64/bin ]; then
+  export PATH=/data/rovere/nvim/nvim-linux-x86_64/bin:${PATH}
 fi
 
 # If lazyvim is there, put it into the PATH env variable
