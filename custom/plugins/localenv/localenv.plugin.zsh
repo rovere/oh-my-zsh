@@ -30,6 +30,11 @@ if [ -e ${HOME}/Node/bin ]; then
   export PATH=${HOME}/Node/bin:${PATH}
 fi
 
+# Add local installation of pre-compiled neovim
+if [ -e /data/rovere/nvim/bin ]; then
+  export PATH=/data/rovere/nvim/bin:${PATH}
+fi
+
 
 export TEXINPUTS="./:"
 
