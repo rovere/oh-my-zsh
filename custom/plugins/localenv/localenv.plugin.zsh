@@ -35,6 +35,10 @@ if [ -e /data/rovere/nvim/bin ]; then
   export PATH=/data/rovere/nvim/bin:${PATH}
 fi
 
+# Add krew, kubectl plugin manager, to PATH
+if [ -e $HOME/.krew/bin ]; then
+  export PATH=${HOME}/.krew/bin:${PATH}
+fi
 
 export TEXINPUTS="./:"
 
