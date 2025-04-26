@@ -40,6 +40,12 @@ if [ -e $HOME/.krew/bin ]; then
   export PATH=${HOME}/.krew/bin:${PATH}
 fi
 
+# Add zen browser
+if [ -e /data/rovere/zen/ ]; then
+  export PATH=/data/rovere/zen/:${PATH}
+fi
+
+
 export TEXINPUTS="./:"
 
 # Setup source-highlight
