@@ -30,7 +30,7 @@ if [ -e /data/rovere/lazygit ]; then
 fi
 
 # If Node is there, configure it to make LSP work inside nvim
-if [ -e /data/rovere/Node/ ]; then
+if [ -e /data/rovere/Node/bin ]; then
   export PATH=/data/rovere/Node/bin:${PATH}
 fi
 
