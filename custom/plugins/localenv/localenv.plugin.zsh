@@ -22,16 +22,26 @@ fi
 if [ -e /data/rovere/nvim/nvim-linux-x86_64/bin ]; then
   export PATH=/data/rovere/nvim/nvim-linux-x86_64/bin:${PATH}
 fi
+if [ -e /shared/rovere/nvim-linux-x86_64/bin ]; then
+  export PATH=/shared/rovere/nvim-linux-x86_64/bin:${PATH}
+fi
 
 # If lazyvim is there, put it into the PATH env variable
 if [ -e /data/rovere/lazygit ]; then
   export PATH=/data/rovere/lazygit:${PATH}
   alias lg=lazygit
 fi
+if [ -e /shared/rovere/lazygit ]; then
+  export PATH=/shared/rovere/lazygit:${PATH}
+  alias lg=lazygit
+fi
 
 # If Node is there, configure it to make LSP work inside nvim
 if [ -e /data/rovere/Node/bin ]; then
   export PATH=/data/rovere/Node/bin:${PATH}
+fi
+if [ -e /shared/rovere/node-v22.15.0-linux-x64 ]; then
+  export PATH=/shared/rovere/node-v22.15.0-linux-x64/bin:${PATH}
 fi
 
 if [ -e /data/rovere/tree-sitter-cli/ ]; then
@@ -99,7 +109,7 @@ function loadgpg() {
       echo "GPG Agent could not be setup"
     fi
   else
-    gpg-agent --daemon -v --debug-level 6 --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
+    gpg-agent --daemon -v --debug-level 2 --disable-scdaemon --write-env-file "$HOME/.gpg-agent-info_${HOSTNAME}" --no-use-standard-socket --default-cache-ttl 43200 --default-cache-ttl-ssh 43200 --max-cache-ttl 43200 --max-cache-ttl-ssh 43200
     if [ $? -ne 0 ]; then
       echo "gpg-agent could not be started'"
     else
