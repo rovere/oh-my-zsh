@@ -40,7 +40,7 @@ alias pbcopy='xsel --primary --input'
 alias cbcopy='xsel --clipboard --input'
 alias showsel='echo PRIMARY is $(xsel -p); echo SECONDARY is $(xsel -s); echo CLIPBOARD is $(xsel -b)'
 
-hless () {highlight -A $* | less -n -r}
+hless () {highlight -O xterm256 $* | less -n -r}
 
 createTags() {
   find ./ -regextype posix-egrep -regex '.*\.(h|cc|icc|cpp)$' > source_files.txt
