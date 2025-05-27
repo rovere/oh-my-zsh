@@ -45,6 +45,10 @@ if [ -e /data/rovere/zen/ ]; then
   export PATH=/data/rovere/zen/:${PATH}
 fi
 
+# Add Mattermost-desktop
+if [ -e /data/rovere/mattermost-desktop-5.12.0-linux-x64/ ]; then
+  export PATH=/data/rovere/mattermost-desktop-5.12.0-linux-x64/:${PATH}
+fi
 
 export TEXINPUTS="./:"
 
